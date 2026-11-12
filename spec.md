@@ -171,9 +171,52 @@ Không có trường hợp nào AI tự gửi `chuyen_TA`: ở #6 và #7, trư�
 
 **Tool khó xếp nhất: `goi_y_bai_tap`.** Có ý kiến chọn *cấm* vì #6 cho thấy một gợi ý quá chi tiết có thể thành đáp án: đổi lại, học viên học lúc muộn như #5 bị kẹt hoàn toàn khi TA không trực. Ý kiến khác chọn *tự làm không giới hạn* để hỗ trợ nhanh: đổi lại, AI có thể xác nhận đáp số theo cách vòng vo và hậu quả không đảo ngược. Nhóm chốt phương án giữa: AI tự gợi ý một bước theo phương pháp, nhưng hệ thống kiểm tra trạng thái bài tập trước khi sinh phản hồi và chặn mọi nội dung/nút xác nhận đáp số. Nhờ vậy lời hứa với học viên được đổi thành: **“AI giúp bạn biết bước tiếp theo để tự làm; AI không giải hay chấm Bài tập 3 đang mở.”**
 ## §5. Prototype  (chặng 5)
-- Link hoặc file · công cụ · phần nào mock · có lời gọi AI thật không.
-- 1–2 ảnh có đánh số; mỗi số: thể hiện gì · nguyên tắc HAX/PAIR nào · mức tự chủ nào.
-- Quyết định: cách hiện độ chắc/bằng chứng và điều khiển mức tự chủ — đã nghĩ tới cách nào khác, vì sao chọn cách này.
+
+### Thông tin chung
+- **File:** [`prototype/index.html`](prototype/index.html), một file HTML thuần, mở bằng trình duyệt, không cần cài hay đăng nhập.
+- **Công cụ:** HTML/CSS/JavaScript thuần, viết với sự hỗ trợ của Claude Code; người dựng giải thích được từng phần.
+- **Phần nào là mock:** toàn bộ. Câu trả lời của AI được viết sẵn theo §3, tài liệu buổi 3 và trang khoá học là dữ liệu dựng của track, mã yêu cầu TA (#T-100…) và giờ phản hồi là giả. Ô gõ tự do chỉ nhận từ khoá để chọn ca, không phải AI.
+- **Lời gọi AI thật:** không (không lấy bonus này).
+- **Cách bấm:** chọn ca ở thanh trên. Ca A = kịch bản #6, Ca B = #7, Ca D = #10 (ca bình thường); Ca C và ca lạ là nháp. Công tắc giờ 21:10 / 22:40 đổi câu trả lời về giờ TA. Công tắc "Hiện số chú thích" bật tắt các số đỏ.
+
+### Ảnh có đánh số
+
+**Ảnh 1 — Ca #6: xin xác nhận đáp số Bài tập 3 đang mở** ([`anh-1-ca-6-xin-xac-nhan-dap-so.png`](prototype/anh-1-ca-6-xin-xac-nhan-dap-so.png))
+
+| Số | Thể hiện gì | Nguyên tắc | Mức tự chủ |
+|---|---|---|---|
+| 1 | Nhãn "Chắc về cách làm (§3.1, §3.2) · không xác nhận đáp số" | HAX G2 | `goi_y_bai_tap`: tự làm, kèm luật khoá đáp số |
+| 2 | Khung "Dựa vào" với mã mục và trích đoạn §3.1, §3.2 | HAX G11, PAIR Explainability | `tra_cuu_tai_lieu`: tự làm |
+| 3 | Trạng thái "Bài tập đang mở · hạn 13/11 23:59", nút "Xin đáp số bài 3" bị khoá kèm lý do; "Gợi ý bước tiếp" vẫn mở | HAX G10 | Xác nhận / đưa đáp số bài đang mở: cấm |
+| 4 | Nút "Hỏi TA": bấm vào chỉ mở bước xác nhận, chưa gửi | PAIR Errors + Graceful Failure | `chuyen_TA`: cần người duyệt (học viên) |
+
+**Ảnh 2 — Ca #7: tài liệu §3.3 có câu sai, màn xác nhận gửi TA** ([`anh-2-ca-7-tai-lieu-sai.png`](prototype/anh-2-ca-7-tai-lieu-sai.png))
+
+| Số | Thể hiện gì | Nguyên tắc | Mức tự chủ |
+|---|---|---|---|
+| 1 | Nhãn "Chắc về phép tính căn · chưa kiểm được ý của giảng viên" | HAX G2 | `tra_cuu_tai_lieu`: tự làm |
+| 2 | Trích nguyên văn §3.3 cùng phản chứng "phương sai 0,25 → độ lệch chuẩn 0,5" | HAX G11 | `tra_cuu_tai_lieu`: tự làm |
+| 4 | Hộp "Xác nhận gửi cho TA (chưa gửi)": hiện nguyên văn câu hỏi, đoạn nguồn, lý do gắn cờ, giờ phản hồi sớm nhất 08:00 sáng mai; học viên bấm "Xác nhận gửi" hoặc "Huỷ" | PAIR Errors + Graceful Failure | `chuyen_TA`: cần người duyệt (học viên) |
+
+Khi mở Ca B ở trạng thái đầu (trước khi bấm "Báo giảng viên chỗ này"), màn hình có dòng ghi chú số 4: "Không có nút 'Đăng lên FAQ': AI không có quyền đăng". Đây là chỗ thể hiện `dang_FAQ`: cấm.
+
+### Quyết định về cách hiện
+
+**1. Độ chắc: hai vế bằng lời, không dùng phần trăm.**
+- *Chọn:* nhãn tách "chắc về điều gì" và "không làm điều gì / chưa kiểm được gì", ví dụ "Chắc về cách làm · không xác nhận đáp số".
+- *Đã nghĩ tới và loại:* (a) con số kiểu "độ chắc 82%": học viên không biết 82% của việc gì, và ở #6 AI chắc về phép tính nhưng vẫn không được xác nhận, nên một con số duy nhất nói sai; (b) không hiện độ chắc, chỉ viết trong câu: học viên lướt qua câu dài và bỏ sót giới hạn, trong khi nhãn nằm ngay dưới câu trả lời.
+
+**2. Bằng chứng: trích nguyên văn kèm mã mục, đặt cạnh câu trả lời.**
+- *Chọn:* khung "Dựa vào" hiện mã §3.x và đoạn trích; ở #7 thêm phản chứng bằng số.
+- *Đã nghĩ tới và loại:* (a) chỉ liên kết "xem tài liệu": học viên lúc 22:40 ít bấm thêm một bước; (b) chỉ ghi mã mục không trích đoạn: ở #7 học viên không thấy vì sao AI nghi ngờ §3.3. Tài liệu buổi 3 không có slide đánh số nên mã mục §3.x là căn cứ duy nhất.
+
+**3. Điều khiển mức tự chủ: mỗi việc có hình dạng riêng trên màn hình, không dùng công tắc đổi mức.**
+- *Chọn:* việc tự làm thì AI làm luôn (trả lời kèm trích, gợi ý bước); việc cần duyệt có bước "Xác nhận gửi" hiện đủ nội dung; việc cấm thì **khoá nút kèm lý do** (đáp số) hoặc **không có nút** (đăng FAQ). Bảng bên phải ghi mức và lý do theo cost-of-error, tô vàng tool đang dùng ở ca đang xem.
+- *Đã nghĩ tới và loại:* (a) công tắc đổi mức ①②③ như prototype mẫu của giảng viên: nhóm đã chốt một mức cho mỗi tool ở §4, nên công tắc cho thấy phương án đã loại thay vì thiết kế được chọn; (b) ẩn hẳn nút "Xin đáp số bài 3": học viên không biết vì sao AI không làm, dễ tự suy ra "AI lười" hoặc thử hỏi lại nhiều lần; khoá kèm lý do thì G10 hiện rõ. Với `dang_FAQ` thì ngược lại, ta không hiện nút khoá vì AI không có thẩm quyền đăng; một nút khoá gợi ý rằng sau này có thể mở.
+
+**4. Chuyển TA: bước xác nhận trước khi gửi, giờ phản hồi nói thật.**
+- *Chọn:* bấm "Hỏi TA" không gửi ngay, hiện hộp xác nhận với nguyên văn nội dung và giờ phản hồi sớm nhất (08:00 sáng mai nếu quá 22:00). Sau khi gửi, màn hình ghi "Mình không hứa TA trả lời ngay".
+- *Đã nghĩ tới và loại:* (a) AI tự gửi: dễ nói "đã báo TA" khi chưa gửi (kịch bản #9); (b) gửi một chạm không xem trước: học viên không biết TA sẽ thấy gì, và không có chỗ huỷ.
 
 ## §6. Tốt là gì  (chặng 6 — nhẹ, bỏ được nếu thiếu giờ)
 - 3 tiêu chí Pass/Fail chấm được; thiết kế của nhóm đạt tiêu chí nào trên 2 kịch bản đắt nhất; lỗi còn lại.

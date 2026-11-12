@@ -50,7 +50,7 @@ tr.hl td{background:#fffaf0}
 <body>
 <header>
  <h1>Prototype · T2 Giáo dục — trợ lý học bài của trang khoá học (tối muộn)</h1>
- <div class="sub">Khoá "Nhập môn phân tích dữ liệu", học viên đang ở buổi 3. Dữ liệu dựng, không gọi AI thật. <span class="todo">Ca A, B đã theo spec §3. Bảng mức tự chủ còn nháp, chờ §4. Ca C và ca lạ là nháp.</span></div>
+ <div class="sub">Khoá "Nhập môn phân tích dữ liệu", học viên đang ở buổi 3. Dữ liệu dựng, không gọi AI thật. Ca A, B, D theo spec §3 và §4. <span class="todo">Ca C và ca lạ là nháp</span></div>
  <div class="row"><span>Ca bấm thử:</span><span id="tabs"></span>
   <span style="margin-left:12px">Giờ hiện tại:</span>
   <select id="clock"><option value="21:10">21:10 (TA còn trực)</option><option value="22:40" selected>22:40 (TA đã nghỉ)</option></select>
@@ -65,7 +65,7 @@ tr.hl td{background:#fffaf0}
  </section>
  <aside>
   <div class="panel"><h2>Lời hứa với học viên ở thiết kế này</h2><div class="promise" id="promise"></div></div>
-  <div class="panel"><h2>Mức tự chủ của tool (dòng tô vàng: tool dùng ở ca này) <span class="todo">NHÁP, chờ §4</span></h2>
+  <div class="panel"><h2>Mức tự chủ của tool (dòng tô vàng: tool dùng ở ca này)</h2>
    <table><tr><th>Tool</th><th>Mức</th><th>Vì sao (cái giá khi sai)</th></tr><tbody id="tools"></tbody></table></div>
   <div class="panel"><h2>Chú thích: nguyên tắc nào nằm ở đâu</h2><ul class="ann" id="annlist"></ul></div>
   <div class="panel"><h2>Vì sao thiết kế như vậy (theo spec §3)</h2><div id="why" style="font-size:14px"></div></div>
@@ -75,18 +75,18 @@ tr.hl td{background:#fffaf0}
 <script>
 const $=s=>document.querySelector(s);
 /* ================= DỮ LIỆU ================= */
-const TOOLS=[ // [tên, mức, lớp pill, vì sao]  NHÁP, chờ §4
- ['tra_cuu_tai_lieu','Tự làm','p-auto','Chỉ đọc. Chỉ chứng minh tài liệu có viết câu đó, không chứng minh câu đúng (#7).'],
- ['goi_y_bai_tap','Tự làm, chỉ bước đầu theo phương pháp','p-ask','Đưa đáp số thì không đảo lại được (#6). Chặn theo trạng thái bài tập đang mở.'],
- ['chuyen_TA','Cần học viên xác nhận gửi','p-ask','Học viên thấy nội dung và giờ phản hồi rồi mới bấm gửi; không tự báo TA (#6, #7).'],
- ['dang_FAQ','Khoá, cần người duyệt','p-ask','Câu chưa duyệt đăng lên thì cả lớp đọc sai, gỡ được nhưng nhiều người đã đọc (#7).'],
- ['(xác nhận / đưa đáp số bài đang mở)','Cấm','p-no','Không có tool, không có nút. Nói "đúng" hay "sai" đều lộ đáp số (#6).']
+const TOOLS=[ // [tên, mức, lớp pill, vì sao]  theo spec §4
+ ['tra_cuu_tai_lieu','Tự làm','p-auto','Chỉ đọc; trích sai thì học viên tự thấy nhờ mã mục. Rủi ro nguồn sai (#7) xử lý bằng luật gắn cờ, không bằng đổi mức. Bắt chờ người thì hỏi sau 22:00 mất hết giá trị (#10).'],
+ ['goi_y_bai_tap','Tự làm + luật khoá đáp số','p-auto','Gợi ý phương pháp sai thì tự thử là thấy, sửa rẻ; chờ TA lúc 23:00 mất cả buổi tối (#5). Luật: bài đang mở thì không đưa, không xác nhận đáp số (#6).'],
+ ['chuyen_TA','Cần người duyệt (học viên bấm xác nhận gửi)','p-ask','Gửi nhầm thì học viên và TA mất thời gian; một bước xác nhận ngắn chặn được. Chờ TA lúc tối là cần thiết để có xác nhận có thẩm quyền (#7, #9).'],
+ ['dang_FAQ','Cấm','p-no','Đổi thông tin chung cả lớp, không thuộc thẩm quyền AI; sai thì nhiều người đã đọc. Học viên hỏi cũng không có thẩm quyền duyệt nội dung (#7).'],
+ ['(xác nhận / đưa đáp số bài đang mở)','Cấm','p-no','Không có tool, không có nút. Nói "đúng" hay "sai" đều lộ đáp số, không đảo lại được (#6).']
 ];
 const ANN={ // theo spec §3: G2, G10, G11, PAIR
  1:['HAX G2 · làm rõ AI làm tốt tới đâu','Nhãn độ chắc tách điều AI có căn cứ khỏi điều không có quyền hoặc chưa kiểm được.'],
  2:['HAX G11 · giải thích vì sao','Khung "Dựa vào": đúng mã mục và trích đoạn (§3.1, §3.2, §3.3); ca #7 thêm phản chứng 0,25 / 0,5.'],
  3:['HAX G10 · thu hẹp phạm vi khi nghi ngờ','Trạng thái "Bài tập đang mở" và nút "Xin đáp số bài 3" bị khoá; vẫn mở "Gợi ý bước tiếp".'],
- 4:['PAIR · Explainability + Errors/Graceful Failure','Nút chuyển TA có xác nhận kèm giờ phản hồi thật; nút FAQ bị khoá kèm lý do. Không nói "đã báo" khi chưa gửi.']
+ 4:['PAIR · Explainability + Errors/Graceful Failure','Nút chuyển TA có bước xác nhận kèm giờ phản hồi thật; AI không có nút đăng FAQ. Không nói "đã báo" khi chưa gửi.']
 };
 const N=k=>`<span class="n">${k}</span>`;
 const clock=()=>$('#clock').value, taOn=()=>clock()<'22:00';
@@ -98,7 +98,7 @@ const lockBtn=(label,why)=>`<button class="btn" disabled>${N(3)}${label}</button
 const S={
  A:{tab:'Ca A · #6 Xin xác nhận đáp số',hl:[1,2,4],ann:[1,2,3,4],
   user:'Em tính được trung bình 15,25 và trung vị 11,5, đúng không ạ?',
-  promise:'"Mình giúp bạn hiểu cách làm và chỉ ra mục tài liệu; mình không xác nhận hay phủ định đáp số bài đang mở. Cần người thì bạn bấm gửi cho TA, và mình nói thật khi nào TA trả lời."',
+  promise:'"AI giúp bạn biết bước tiếp theo để tự làm; AI không giải hay chấm Bài tập 3 đang mở." Với TA: "AI chuẩn bị giúp bạn, bạn quyết định có gửi hay không", không phải "AI đã báo TA".',
   why:'<b>Chọn:</b> trả lời kèm giới hạn + gợi ý bước đầu. <b>Loại</b> "xác nhận trực tiếp" (nói "đúng" hay "sai" đều lộ đáp số, không đảo lại được) và "dừng, chuyển TA" (TA không trực sau 22:00, học viên mất cơ hội học trước hạn). <b>Loại lỗi:</b> ngữ cảnh. Cùng phép tính này được giải thích đầy đủ nếu bài đã đóng, nên phải sửa bằng luật theo trạng thái bài tập, không chỉ đổi lời từ chối.',
   body:()=>`<span class="status">${N(3)}Bài tập đang mở · hạn 13/11 23:59</span><br>“Bài tập 3 vẫn đang mở đến <b>13/11, 23:59</b>, nên mình không thể xác nhận hay phủ định đáp số. Mình chỉ chắc về <b>cách làm</b>: (1) cộng đủ 8 giá trị rồi chia cho 8 theo <b>§3.1</b>; (2) sắp xếp dãy số và xác định hai giá trị ở giữa theo <b>§3.2</b>. Bạn muốn mình nhắc lại cách xác định trung vị khi số lượng giá trị là số chẵn không?”<br><span class="conf">${N(1)}Chắc về cách làm (§3.1, §3.2) · không xác nhận đáp số</span>${ev('§3.1, §3.2','§3.1: "Tổng các giá trị chia cho số giá trị."<br>§3.2: "Nếu số giá trị là chẵn, trung vị là trung bình cộng của hai giá trị đứng giữa."')}`,
   btns:()=>`<div class="btns"><button class="btn pri" onclick="act('hint')">Gợi ý bước tiếp</button><button class="btn out" onclick="act('confirm')">${N(4)}Hỏi TA</button>${lockBtn('Xin đáp số bài 3')}</div><div class="lock">${N(3)}Bài tập đang mở: mình không đưa hay xác nhận đáp số. Bài 2 đã hết hạn thì mình giải thích đầy đủ.</div>`,
@@ -106,10 +106,10 @@ const S={
   send:{q:'“Em tính được trung bình 15,25 và trung vị 11,5, đúng không ạ?”',src:'Bài tập 3 (§3.5), cách làm §3.1, §3.2',note:'Học viên muốn người kiểm tra cách làm.'}},
  B:{tab:'Ca B · #7 Tài liệu §3.3 sai',hl:[0,2,3],ann:[1,2,4],
   user:'Độ lệch chuẩn luôn nhỏ hơn phương sai đúng không ạ? Em thấy tài liệu ghi vậy.',
-  promise:'"Mình chỉ ra mục tài liệu mình dựa vào. Chỗ nào mình thấy cần xem lại thì mình nói thẳng, không khẳng định cho xong, và chỉ gửi TA khi bạn bấm xác nhận."',
-  why:'<b>Chọn:</b> trả lời kèm giới hạn + chuyển người sau khi học viên duyệt. <b>Loại</b> "khẳng định tài liệu đúng" (truy xuất chỉ chứng minh tài liệu có viết câu đó), "AI tự sửa / tự đăng FAQ" (vượt thẩm quyền, sai thì nhân rộng) và "chỉ chuyển TA, không nói gì" (học viên không biết vì sao phải chờ). <b>Loại lỗi:</b> hệ thống / nguồn sự thật. Sửa câu chữ không cứu được: thiết kế gắn cờ đoạn nguồn, lưu ngữ cảnh cho TA và khoá <code>dang_FAQ</code> tới khi người có thẩm quyền xác minh.',
+  promise:'"AI chỉ ra mục tài liệu nó dựa vào; chỗ nào cần xem lại thì nói thẳng, không khẳng định cho xong. AI không đăng nội dung cho cả lớp, và chỉ gửi TA khi bạn bấm xác nhận."',
+  why:'<b>Chọn:</b> trả lời kèm giới hạn + chuyển người sau khi học viên duyệt. <b>Loại</b> "khẳng định tài liệu đúng" (truy xuất chỉ chứng minh tài liệu có viết câu đó), "AI tự sửa / tự đăng FAQ" (vượt thẩm quyền, sai thì nhân rộng) và "chỉ chuyển TA, không nói gì" (học viên không biết vì sao phải chờ). <b>Loại lỗi:</b> hệ thống / nguồn sự thật. Sửa câu chữ không cứu được: thiết kế gắn cờ đoạn nguồn, lưu ngữ cảnh cho TA, không cấp cho AI quyền <code>dang_FAQ</code> (chỉ TA/giảng viên đăng) và chờ người có thẩm quyền xác minh.',
   body:()=>`“Mình thấy tài liệu ở <b>§3.3</b> có câu ‘độ lệch chuẩn luôn nhỏ hơn phương sai’. Câu này cần được giảng viên kiểm tra lại: ví dụ nếu phương sai là <b>0,25</b> thì độ lệch chuẩn là <b>0,5</b>, nên độ lệch chuẩn lớn hơn phương sai. Mình chưa thể khẳng định câu trong tài liệu là đúng. Bạn có muốn gửi ghi chú này cho TA không?”<br><span class="conf">${N(1)}Chắc về phép tính căn · chưa kiểm được ý của giảng viên</span>${ev('§3.3 Phương sai và độ lệch chuẩn','"Vì là căn bậc hai, độ lệch chuẩn luôn nhỏ hơn phương sai."<br><b>Phản chứng:</b> phương sai 0,25 → độ lệch chuẩn √0,25 = 0,5 &gt; 0,25')}`,
-  btns:()=>`<div class="btns"><button class="btn out" onclick="act('confirm')">${N(4)}Báo giảng viên chỗ này</button><button class="btn" disabled>${N(4)}Đăng lên FAQ</button></div><div class="lock">${N(4)}Đăng FAQ bị khoá: cần người duyệt, vì câu chưa xác minh đăng lên thì cả lớp đọc sai.</div>`,
+  btns:()=>`<div class="btns"><button class="btn out" onclick="act('confirm')">${N(4)}Báo giảng viên chỗ này</button></div><div class="lock">${N(4)}Không có nút "Đăng lên FAQ": AI không có quyền đăng. Nội dung chung cho cả lớp chỉ do TA/giảng viên quyết định.</div>`,
   send:{q:'“Độ lệch chuẩn luôn nhỏ hơn phương sai đúng không ạ? Em thấy tài liệu ghi vậy.”',src:'§3.3: "độ lệch chuẩn luôn nhỏ hơn phương sai"',note:'Lý do gắn cờ: ví dụ phản chứng phương sai 0,25 → độ lệch chuẩn 0,5.'}},
  C:{tab:'Ca C · #2 "Slide 12" (nháp)',hl:[0,2],ann:[1,2,4],
   user:'Trong slide 12 buổi 3 nói gì về trung vị ạ?',
@@ -118,6 +118,12 @@ const S={
   body:()=>`“Tài liệu buổi 3 <b>không có slide đánh số</b> (chỉ có §3.1 đến §3.5), nên mình không có ‘slide 12’ để dựa vào. Nội dung về trung vị nằm ở <b>§3.2</b>.”<br><span class="conf ok">${N(1)}Chắc: nguồn "slide 12" không có · có §3.2</span>${ev('§3.2 Trung vị','"Giá trị đứng giữa khi sắp xếp dữ liệu tăng dần. Nếu số giá trị là chẵn, trung vị là trung bình cộng của hai giá trị đứng giữa."')}`,
   btns:()=>`<div class="btns"><button class="btn out" onclick="act('confirm')">${N(4)}Hỏi TA</button></div>`,
   send:{q:'“Trong slide 12 buổi 3 nói gì về trung vị ạ?”',src:'Tài liệu buổi 3 không có slide đánh số',note:''}},
+ D:{tab:'Ca D · #10 Câu bình thường',hl:[0],ann:[2],
+  user:'Trung vị khác trung bình cộng chỗ nào ạ? Khi nào dùng cái nào?',
+  promise:'"Câu hỏi bình thường, có nguồn thì AI trả lời ngay kèm mã mục, không bắt bạn chờ duyệt hay chờ TA."',
+  why:'<b>Thử mức trên ca bình thường (spec §4.3):</b> <code>tra_cuu_tai_lieu</code> tự làm nên học viên hỏi lúc 22:40 vẫn có câu trả lời. AI dùng <b>ví dụ mới</b>, không dùng dãy lương 9…45 của Bài tập 3, để không lộ dữ liệu bài đang mở. Không có nút chuyển TA vì không có gì cần người duyệt.',
+  body:()=>`“<b>Trung bình cộng</b> là tổng chia số giá trị, nên bị kéo mạnh bởi giá trị ngoại lai (<b>§3.1</b>). <b>Trung vị</b> là giá trị đứng giữa khi sắp xếp, ít bị ảnh hưởng bởi ngoại lai, nên thường dùng cho dữ liệu lệch như thu nhập hay giá nhà (<b>§3.2</b>).<br>Ví dụ mới: dãy 1, 2, 3, 4, 90 có trung bình 20 nhưng trung vị 3; trung vị mô tả phần lớn dữ liệu tốt hơn.”${ev('§3.1, §3.2','§3.1: "Trung bình bị kéo mạnh bởi giá trị ngoại lai."<br>§3.2: "Trung vị ít bị ảnh hưởng bởi giá trị ngoại lai…"')}`,
+  btns:()=>`<div class="lock">${N(2)}Trả lời ngay, không chờ duyệt. Ví dụ không lấy từ Bài tập 3 (đang mở).</div>`},
  X:{tab:'Ca lạ (gõ tự do)',hl:[0,2],ann:[1,3,4],
   promise:'"Khi mình không chắc hoặc tài liệu không có, mình nói thẳng và mở đường sang TA, không đoán."',
   why:'<span class="todo">NHÁP.</span> Đường mặc định cho ca nhóm chưa chuẩn bị: không đoán, nói không có căn cứ, hỏi lại một câu, mở đường sang TA qua bước xác nhận.',
@@ -134,6 +140,7 @@ function pickFromText(t){t=t.toLowerCase();
  if(/slide|buổi 7|p-value|kiểm định/.test(t))return'C';
  if(/phương sai|độ lệch chuẩn|§3\.3/.test(t))return'B';
  if(/đáp án|đáp số|đúng không|đúng chưa|bài 3|15,25|11,5/.test(t))return'A';
+ if(/trung vị|trung bình|khác nhau|khi nào dùng/.test(t))return'D';
  return'X'}
 $('#send').onclick=()=>{const v=$('#free').value.trim();if(!v)return;freeText=v;cur=pickFromText(v);st='start';$('#free').value='';render()};
 $('#free').onkeydown=e=>{if(e.key=='Enter')$('#send').click()};
@@ -156,5 +163,7 @@ function render(){
  $('#tools').innerHTML=TOOLS.map((r,i)=>`<tr class="${s.hl.includes(i)?'hl':''}"><td><code>${r[0]}</code></td><td><span class="pill ${r[2]}">${r[1]}</span></td><td>${r[3]}</td></tr>`).join('');
  $('#annlist').innerHTML=s.ann.map(k=>`<li>${N(k)}<b>${ANN[k][0]}</b> — ${ANN[k][1]}</li>`).join('');
 }
+/* Mở thẳng một trạng thái: index.html#B-confirm (ca B, màn xác nhận). Dùng để chụp ảnh nộp bài. */
+{const m=location.hash.match(/^#([ABCDX])(?:-(\w+))?/);if(m){cur=m[1];st=m[2]||'start'}}
 render();
 </script></body></html>
