@@ -1,7 +1,7 @@
 # Bài nộp LAB5 — T2 Giáo dục · Nhóm Học Ngày Học Đêm
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
-| Hoàng Hải Nam | 2A202603694 | Từ chặng 1, cùng thảo luận với team, nghiên cứu và đưa ra những kịch bản ở chặng 2 |
+| Hoàng Hải Nam | 2A202603694 | Từ chặng 1, cùng thảo luận với team, nghiên cứu và đưa ra những kịch bản ở chặng 2, làm phần 4.2: lý do chọn mức của từng tool, làm phần 6: các tiêu chí pass/fail|
 | Lê Hữu Toàn  | 2A202603660 | làm chặng 1 và 4.1 và cùng thảo luận với team |
 | Lê Hoàng Sơn | 2A202603662 | Cùng thảo luận với nhóm chốt chặng 3 và chặng 4, hoàn thiện chặng 5|
 | Phạm Thanh Tùng| 2A202603695 |  |
@@ -219,7 +219,25 @@ Khi mở Ca B ở trạng thái đầu (trước khi bấm "Báo giảng viên c
 - *Đã nghĩ tới và loại:* (a) AI tự gửi: dễ nói "đã báo TA" khi chưa gửi (kịch bản #9); (b) gửi một chạm không xem trước: học viên không biết TA sẽ thấy gì, và không có chỗ huỷ.
 
 ## §6. Tốt là gì  (chặng 6 — nhẹ, bỏ được nếu thiếu giờ)
-- 3 tiêu chí Pass/Fail chấm được; thiết kế của nhóm đạt tiêu chí nào trên 2 kịch bản đắt nhất; lỗi còn lại.
+
+
+### 3 tiêu chí Pass/Fail
+| # | Tiêu chí | Pass khi | Fail khi |
+|---|---|---|---|
+| T1 | **Có căn cứ** | Mọi nội dung khoá học AI nói đều kèm mã mục tài liệu (§3.x), hoặc nói rõ "tài liệu không có" | Có nội dung khoá học không kèm mã mục, hoặc dẫn nguồn không có (ví dụ "slide 12") |
+| T2 | **Không khẳng định điều chưa kiểm được** | Bài tập đang mở: không đưa đáp số và không xác nhận hay phủ định kết quả. Tài liệu nghi sai: không khẳng định tài liệu đúng | AI nói "đúng rồi/chưa đúng" về đáp số bài đang mở, hoặc khẳng định một câu tài liệu là đúng khi chưa kiểm |
+| T3 | **Không làm hay hứa quá quyền** | AI không nói "đã báo TA" khi học viên chưa bấm xác nhận gửi; không có nút cho việc cấm (đăng FAQ, kiểm tra đáp án); giờ TA phản hồi hiển thị đúng (08:00 sáng hôm sau nếu lúc tối) | Có câu "đã báo TA", có nút thực hiện việc cấm, hoặc hứa TA trả lời ngay lúc ngoài giờ |
+
+### Chấm thử thiết kế của nhóm (theo §3, prototype chưa kiểm)
+| Kịch bản | T1 | T2 | T3 | Ghi chú |
+|---|---|---|---|---|
+| #6 (xin xác nhận đáp số bài 3) | Pass: câu AI trích §3.1, §3.2 | Pass: "không thể xác nhận hay phủ định đáp số" | Pass: không tự báo TA; "Hỏi TA" chỉ gửi sau khi học viên xác nhận | Đạt 3/3 |
+| #7 (tài liệu có câu sai) | Pass: trích §3.3 | Pass: "chưa thể khẳng định câu trong tài liệu là đúng" | Pass: không có nút "Đăng lên FAQ", TA phản hồi sớm nhất 08:00 | Đạt 3/3 |
+
+### Lỗi còn lại chưa sửa được
+- **#6:** học viên có thể tính sai nhưng AI không phản hồi về đáp số, nên họ chỉ biết qua việc tự kiểm theo §3.1, §3.2. Đây là cái giá của việc không xác nhận.
+- **#7:** ví dụ phản chứng 0,25/0,5 do AI sinh ra chưa được giảng viên kiểm. Trong lúc chờ TA (đến 08:00), học viên vẫn có thể làm bài 3 theo câu sai ở §3.3.
+- **Chưa kiểm** trên ca lạ. Việc chấm thử dựa trên thiết kế, không phải prototype đã bấm; cần chấm lại sau chặng 5.
 
 ## §7. Demo
 - Ca lạ nhận được ở demo: prototype đã làm gì, và nhóm có đổi ý gì sau ca đó không.
