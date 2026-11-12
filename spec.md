@@ -2,8 +2,13 @@
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
 | Hoàng Hải Nam | 2A202603694 | Từ chặng 1, cùng thảo luận với team, nghiên cứu và đưa ra những kịch bản ở chặng 2 |
-| Lê Hữu Toàn  | 2A202603660 |  |
+
+
 | Lê Hoàng Sơn | 2A202603662 | Cùng thảo luận với nhóm chốt chặng 3 và chặng 4, hoàn thiện chặng 5|
+
+| Lê Hữu Toàn  | 2A202603660 | làm phần chương 1 và chương 4.1 và cùng team thảo luận nghiên cứu |
+
+
 | Phạm Thanh Tùng| 2A202603695 |  |
 
 
