@@ -1,7 +1,7 @@
 # Bài nộp LAB5 — [Track] · Nhóm [tên]
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
-|  |  |  |
+| Hoàng Hải Nam | 2A202603694 | Từ chặng 1, cùng thảo luận với team, nghiên cứu và đưa ra những kịch bản ở chặng 2 |
 | Lê Hữu Toàn  | 2A202603660 |  |
 | Lê Hoàng Sơn | 2A202603662 |  |
 
