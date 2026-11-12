@@ -4,7 +4,7 @@
 |  |  |  |
 | Lê Hữu Toàn | 2A202603660 |  |
 | Lê Hoàng Sơn | 2A202603662 |  |
-| Phạm Thanh Tùng| 2A202603662 |  |
+| Phạm Thanh Tùng| 2A202603695 |  |
 
 
 ## §1. Lát cắt & phạm vi
