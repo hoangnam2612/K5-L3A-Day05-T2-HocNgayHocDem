@@ -105,6 +105,17 @@ Trong **trợ lý học bài của trang khóa học** (kiểu ChatGPT Study mod
 ## §4. Mức tự chủ  (chặng 4)
 Với mỗi tool:
 - Mức của nhóm (tự làm / cần người duyệt / cấm). Nếu cần người duyệt: ai duyệt · người duyệt thấy gì · quá hạn thì sao.
+
+tra_cuu_tai_lieu (tự làm) 
+
+goi_y_bai_tap  (tự làm)
+
+chuyen_TA (cần người duyệt): Trước khi xác nhận, học viên thấy nguyên văn câu hỏi, đoạn tài liệu liên quan, lý do chuyển và thời gian TA dự kiến phản hồi. Nếu học viên chưa xác nhận thì yêu cầu không được gửi. Nếu TA chưa phản hồi đúng giờ dự kiến, hệ thống cập nhật trạng thái và không nói rằng vấn đề đã được giải quyết.
+
+dang_FAQ (cấm)
+
+
+
 - Lý do theo cost-of-error: sai thì ai chịu gì · đảo lại được không · chờ người thì mất gì.
 - Phương án đã cân nhắc và vì sao loại.
 Thêm:
