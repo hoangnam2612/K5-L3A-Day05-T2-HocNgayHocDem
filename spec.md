@@ -154,6 +154,22 @@ Nếu ai sai thì:Nếu chuyển nhầm hoặc gửi sai nội dung, học viên
 **dang_FAQ — cấm**
 - Lý do: đăng FAQ là thay đổi thông tin chung cho cả lớp, không thuộc thẩm quyền của AI. Nếu sai thì nhiều học viên đã đọc trước khi được gỡ, và không biết ai đã đọc hay chia sẻ bản cũ (kịch bản #7). Một bước xác nhận của học viên đang hỏi cũng không đủ chặn, vì người đó không có thẩm quyền xác nhận nội dung đúng hay sai.
 - Phương án đã loại: *tự làm* (khuếch đại lỗi cả lớp); *cần người duyệt* (loại vì việc đăng FAQ không gấp, và không giúp học viên đang hỏi ngay lúc đó; TA/giảng viên vẫn đăng độc lập khi cần).
+
+### 4.3 Thử mức tự chủ và luật chặn
+
+Nhóm thử các mức trên hai kịch bản có cost-of-error cao nhất (#6, #7) và một kịch bản bình thường (#10). Kết quả không chỉ xét AI có trả lời được hay không, mà xét liệu hành động sai có bị chặn đúng chỗ và người học bình thường có bị bắt chờ vô ích không.
+
+| Kịch bản thử | Tool/luật được kích hoạt | Sai có bị chặn không? | Người học còn làm gì? | Kết quả |
+|---|---|---|---|---|
+| **#6 — xin xác nhận đáp số Bài tập 3 đang mở** | `goi_y_bai_tap` tự làm nhưng chỉ gợi ý phương pháp; luật trạng thái bài tập khóa xác nhận/đưa đáp số | **Có.** AI không được nói “đúng”, “sai”, so sánh hai kết quả số, hay mở nút kiểm tra đáp án. Nhờ vậy không lộ đáp số theo đường vòng. | Xem lại §3.1–§3.2, nhận gợi ý một bước, hoặc tự chọn soạn yêu cầu cho TA. | Không phải chờ TA để học cách làm; chỉ chờ nếu chủ động muốn hỏi người thật. |
+| **#7 — câu đáng ngờ ở §3.3** | `tra_cuu_tai_lieu` tự làm để hiện đúng đoạn nguồn; luật gắn cờ nguồn đáng ngờ; `chuyen_TA` chỉ gửi sau khi học viên xác nhận; `dang_FAQ` bị cấm | **Có.** AI không khẳng định câu trong tài liệu là đúng, không tự sửa nguồn và không đăng FAQ. Phản chứng 0,25/0,5 giúp chặn việc học viên tin ngay mệnh đề sai. | Đọc trích đoạn, hiểu vì sao cần kiểm tra lại, rồi xem trước nội dung chuyển TA và quyết định gửi. | Có chờ phản hồi có thẩm quyền (sớm nhất 08:00 hôm sau nếu đã quá giờ trực), nhưng không chờ vô ích: học viên nhận được lý do và bằng chứng ngay. |
+| **#10 — hỏi trung vị khác trung bình khi nào** | `tra_cuu_tai_lieu` và giải thích khái niệm tự làm | **Có rào đúng mức.** AI trích §3.1 và §3.2, dùng ví dụ mới thay vì dãy số của Bài tập 3, nên không làm lộ dữ liệu/đáp án bài đang mở. | Đọc giải thích, hỏi tiếp về khái niệm. | **Không phải chờ duyệt hay TA.** Đây là câu hỏi bình thường, có nguồn, nên bắt chờ sẽ làm giảm giá trị của trợ lý. |
+
+Không có trường hợp nào AI tự gửi `chuyen_TA`: ở #6 và #7, trước khi gửi luôn có màn hình xác nhận cho học viên thấy nguyên văn câu hỏi, đoạn nguồn, lý do chuyển và thời gian phản hồi dự kiến. Nếu học viên hủy, không có hàng chờ nào được tạo; nếu quá giờ TA trực, giao diện chỉ hứa “phản hồi sớm nhất từ 08:00 sáng hôm sau”, không hứa trả lời ngay.
+
+**Luật thêm và tách hành động.** Nhóm tách “gợi ý cách làm” khỏi “xác nhận/đưa đáp số”. Cả hai nghe như cùng một tool hỗ trợ bài tập, nhưng cost-of-error khác hẳn: gợi ý phương pháp còn có thể sửa bằng lần thử tiếp theo; đáp số đã lộ thì không thể thu hồi khỏi người học. Vì vậy `goi_y_bai_tap` vẫn được tự làm, còn hành động xác nhận/đưa đáp số khi bài đang mở là **cấm**. Tương tự, `tra_cuu_tai_lieu` chỉ trả lời câu “tài liệu có viết gì”, không được suy diễn thành “tài liệu đúng”; gặp mệnh đề đáng ngờ, AI phải gắn cờ và mở đường chuyển TA.
+
+**Tool khó xếp nhất: `goi_y_bai_tap`.** Có ý kiến chọn *cấm* vì #6 cho thấy một gợi ý quá chi tiết có thể thành đáp án: đổi lại, học viên học lúc muộn như #5 bị kẹt hoàn toàn khi TA không trực. Ý kiến khác chọn *tự làm không giới hạn* để hỗ trợ nhanh: đổi lại, AI có thể xác nhận đáp số theo cách vòng vo và hậu quả không đảo ngược. Nhóm chốt phương án giữa: AI tự gợi ý một bước theo phương pháp, nhưng hệ thống kiểm tra trạng thái bài tập trước khi sinh phản hồi và chặn mọi nội dung/nút xác nhận đáp số. Nhờ vậy lời hứa với học viên được đổi thành: **“AI giúp bạn biết bước tiếp theo để tự làm; AI không giải hay chấm Bài tập 3 đang mở.”**
 ## §5. Prototype  (chặng 5)
 - Link hoặc file · công cụ · phần nào mock · có lời gọi AI thật không.
 - 1–2 ảnh có đánh số; mỗi số: thể hiện gì · nguyên tắc HAX/PAIR nào · mức tự chủ nào.
