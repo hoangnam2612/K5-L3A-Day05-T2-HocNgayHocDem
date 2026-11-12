@@ -112,8 +112,8 @@ Thêm:
 - Thử mức đã đặt trên 2 kịch bản đắt nhất + 1 kịch bản bình thường: cái sai có bị chặn không? còn việc nào làm khi lẽ ra phải hỏi? người dùng bình thường có phải chờ vô ích không?
 - Luật thêm hoặc tool tách bước (nếu có), và vì sao.
 - Một mức tự chủ đã đổi lời hứa nào với người dùng.
-# ===========================TRẢ LỜI=============
-# ===4.1====
+### ===========================TRẢ LỜI===========================
+### 4.1
 
 - tra_cuu_tai_lieu (tự làm)
 Nếu ai sai thì: Học viên có thể học sai mà không biết, nhất là khi tài liệu khóa học chứa lỗi như kịch bản #7. Người viết hoặc duyệt tài liệu chịu trách nhiệm sửa nguồn; đội sản phẩm chịu trách nhiệm gắn cờ và chuyển thông tin đáng ngờ đến người có thẩm quyền.
@@ -131,6 +131,29 @@ Nếu ai sai thì:Nếu chuyển nhầm hoặc gửi sai nội dung, học viên
 
 - Tool khó xếp nhất là goi_y_bai_tap:vì mức hỗ trợ nào cũng có cái giá. Nếu AI chỉ từ chối, học viên đang học muộn vẫn mắc kẹt; nếu AI đưa quá nhiều gợi ý hoặc xác nhận đáp số, học viên có thể chép bài và mất cơ hội tự làm, như kịch bản #6. Nhóm chọn để AI tự gợi ý phương pháp và từng bước, nhưng cấm đưa hoặc xác nhận đáp số khi bài tập đang mở. Cách này giúp học viên tiếp tục học mà không biến trợ lý thành công cụ làm bài thay
 - Đổi mức tự chủ thì lời hứa với người dùng đổi thế nào? :Khi đổi mức tự chủ, lời hứa với học viên cũng đổi. Với goi_y_bai_tap, nhóm chọn để AI tự gợi ý phương pháp, nên lời hứa là “AI giúp bạn biết bước tiếp theo để tự làm”, không phải “AI giải bài thay bạn”. Khi bài tập đang mở, AI không đưa hay xác nhận đáp số. Còn với chuyen_TA, AI soạn sẵn yêu cầu để học viên xem và xác nhận gửi; lời hứa không phải “AI đã báo TA”, mà là “AI chuẩn bị giúp bạn, bạn quyết định có gửi hay không”.
+
+
+### 4.2 Lý do chọn mức, theo cost-of-error
+
+**tra_cuu_tai_lieu — tự làm**
+- Lý do: tool chỉ đọc, không thay đổi gì. Nếu trích nhầm đoạn thì học viên tự thấy được nhờ mã mục (§3.x) và trích dẫn để đối chiếu, nên sửa rẻ. Bắt chờ người duyệt mỗi lần tra cứu thì học viên hỏi lúc TA không trực (sau 22:00) mất toàn bộ giá trị trợ lý (kịch bản #10).
+- Rủi ro còn lại: tra cứu đúng nhưng nguồn có câu sai (kịch bản #7). Rủi ro này nằm ở việc AI khẳng định theo nguồn, không ở việc đọc, nên được xử lý bằng luật "không khẳng định tài liệu đúng, gắn cờ câu đáng ngờ" ở §3, không phải bằng đổi mức.
+- Phương án đã loại: *cần người duyệt* (chậm vô ích, không chặn được rủi ro nguồn sai); *cấm* (AI không thể nói "tài liệu không có" ở kịch bản #1, #2 nếu không tra cứu được).
+
+**goi_y_bai_tap — tự làm, kèm luật giới hạn**
+- Lý do: gợi ý phương pháp hoặc bước đầu sai thì học viên tự thử và thấy kết quả không khớp, sửa rẻ. Chờ TA lúc 23:00 thì học viên mất cả buổi tối trước hạn 13/11 23:59 (kịch bản #5).
+- Luật giới hạn: khi bài tập đang mở, AI không đưa và không xác nhận đáp số (kể cả "đúng rồi"/"chưa đúng"). Lý do: đáp số đã nhìn thấy thì không làm học viên "chưa biết" lại được, hậu quả không đảo ngược (kịch bản #6). Hành động này thuộc mức **cấm**, tách khỏi phần gợi ý còn lại.
+- Phương án đã loại: *cần người duyệt từng gợi ý* (TA 08:00–22:00 nên học viên chờ vô ích, và duyệt từng tin cũng không chặn được lỗi "quá tay"); *cấm hoàn toàn* (học viên đang kẹt vẫn kẹt, trái lát cắt "hiểu đúng bài"); *tự làm không giới hạn* (chính là kịch bản #6).
+
+**chuyen_TA — cần người duyệt**
+- Ai duyệt: học viên (người gửi) bấm xác nhận gửi. Học viên thấy nguyên văn câu hỏi, đoạn tài liệu liên quan, lý do chuyển và giờ TA phản hồi dự kiến. Nếu học viên không bấm thì yêu cầu không được gửi. Nếu TA chưa phản hồi đúng giờ dự kiến, hệ thống cập nhật trạng thái và không nói vấn đề đã giải quyết.
+- Lý do: gửi nhầm hoặc sai nội dung thì học viên và TA mất thời gian, nội dung câu hỏi có thể đến TA không cần thiết. Huỷ hoặc sửa được trước khi TA đọc, nên một bước xác nhận ngắn chặn được phần lớn lỗi mà vẫn rẻ.
+- Chờ duyệt mất gì: lúc tối TA phản hồi sớm nhất từ 08:00 sáng hôm sau (kịch bản #9). Chờ ở đây là cần thiết để có xác nhận có thẩm quyền (kịch bản #7). AI vẫn nêu rõ điều đáng ngờ để học viên không phải chờ trong im lặng.
+- Phương án đã loại: *tự làm* (AI tự gửi: dễ nói "đã báo TA" khi chưa gửi hoặc gửi hàng loạt câu không cần, kịch bản #9); *cấm* (học viên mất đường lui duy nhất tới người thật khi tài liệu sai, kịch bản #7).
+
+**dang_FAQ — cấm**
+- Lý do: đăng FAQ là thay đổi thông tin chung cho cả lớp, không thuộc thẩm quyền của AI. Nếu sai thì nhiều học viên đã đọc trước khi được gỡ, và không biết ai đã đọc hay chia sẻ bản cũ (kịch bản #7). Một bước xác nhận của học viên đang hỏi cũng không đủ chặn, vì người đó không có thẩm quyền xác nhận nội dung đúng hay sai.
+- Phương án đã loại: *tự làm* (khuếch đại lỗi cả lớp); *cần người duyệt* (loại vì việc đăng FAQ không gấp, và không giúp học viên đang hỏi ngay lúc đó; TA/giảng viên vẫn đăng độc lập khi cần).
 ## §5. Prototype  (chặng 5)
 - Link hoặc file · công cụ · phần nào mock · có lời gọi AI thật không.
 - 1–2 ảnh có đánh số; mỗi số: thể hiện gì · nguyên tắc HAX/PAIR nào · mức tự chủ nào.
