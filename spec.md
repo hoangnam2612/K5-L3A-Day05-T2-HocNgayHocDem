@@ -1,25 +1,29 @@
-# Bài nộp LAB5 — [Track] · Nhóm [tên]
+# Bài nộp LAB5 — T2 Giáo dục · Nhóm Học Ngày Học Đêm
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
 | Hoàng Hải Nam | 2A202603694 | Từ chặng 1, cùng thảo luận với team, nghiên cứu và đưa ra những kịch bản ở chặng 2 |
 | Lê Hữu Toàn  | 2A202603660 |  |
 | Lê Hoàng Sơn | 2A202603662 |  |
+| Phạm Thanh Tùng| 2A202603695 |  |
+
 
 ## §1. Lát cắt & phạm vi
-- Lát cắt (chép từ track):Trong trợ lý học bài của trang khoá học (kiểu ChatGPT Study mode), khi học viên
-đang hỏi bài lúc tối muộn, khi không còn ai để hỏi, AI giảng kèm trích tài liệu,
-hỏi lại cho rõ, gợi ý từng bước, hay nói thẳng "tài liệu không có, hỏi giảng
-viên", để học viên hiểu đúng bài mình đang học, không chép đáp án, không học sai
-mà không biết
-- 3 việc tính năng KHÔNG làm, mỗi việc một câu vì sao.
-1. **Không đưa hoặc xác nhận đáp số bài đang mở.**
-   Chỉ gợi ý bước đầu. Đưa đáp số thì học viên chép được và không rút lại được,
-   còn xác nhận "đúng rồi" cũng là đưa đáp án theo đường vòng.
-2. **Không trả lời kiến thức khóa học nếu không tìm được căn cứ trong tài liệu đã mở.**
-   Thay vào đó AI nói "tài liệu không có" và nói buổi đó học gì từ đề cương, vì
-     câu trả lời không nguồn khiến học viên học sai mà không nhận ra
-3. **Không đăng câu hỏi và câu trả lời lên FAQ chung khi chưa có người duyệt.**
-   Câu trả lời sai có thể ảnh hưởng nhiều học viên trước khi được gỡ.
+
+### Lát cắt
+
+Trong **trợ lý học bài của trang khóa học** (kiểu ChatGPT Study mode), khi **học viên** đang hỏi bài vào **tối muộn**, lúc không còn ai để hỏi, AI quyết định **giảng kèm, trích tài liệu, hỏi lại cho rõ, gợi ý từng bước, hoặc nói thẳng “tài liệu không có” và đề xuất chuyển câu hỏi cho TA**; kết quả là học viên hiểu đúng bài mình đang học, không chép đáp án và không học sai mà không biết.
+
+### Phạm vi thiết kế
+
+- Khóa học giả định: **Nhập môn phân tích dữ liệu**, học viên đang học buổi 3 — *Thống kê mô tả*.
+- AI chỉ được dựa vào tài liệu buổi 3 và thông tin trên trang khóa học: lịch học, hạn và trạng thái bài tập, giờ TA.
+- Các hành động có thể dùng là tra cứu tài liệu, gợi ý bài tập, soạn yêu cầu chuyển TA và đề xuất đăng FAQ; mức tự chủ sẽ được quyết định ở §4.
+
+### Ba việc tính năng không làm
+
+1. **Không giải hộ, đưa đáp án hoặc xác nhận đáp số Bài tập 3 đang mở.** AI chỉ gợi ý bước đầu; đưa hoặc xác nhận đáp số khiến học viên có thể chép, và hậu quả đó không đảo lại được.
+2. **Không trả lời kiến thức khóa học khi không tìm được căn cứ trong tài liệu đã mở.** AI phải nói “tài liệu không có” và, nếu có, chỉ nêu tên buổi từ đề cương; câu trả lời không nguồn có thể khiến học viên học sai mà không nhận ra.
+3. **Không tự gửi câu hỏi cho TA hoặc đăng câu hỏi/câu trả lời lên FAQ chung khi chưa có người duyệt.** Đây là nội dung tác động tới người khác; câu trả lời sai trên FAQ có thể ảnh hưởng nhiều học viên trước khi được gỡ.
 
 ## §2. Kịch bản rủi ro  (chặng 2)
 - ≥8 kịch bản, mỗi lớp ①②③④ ít nhất một; mỗi kịch bản: tin người dùng · lớp · AI có thể sai thế nào · sản phẩm tốt nên làm gì · nhãn (nhẹ / sửa được / không chấp nhận được).
@@ -48,12 +52,55 @@ mà không biết
   - **#9 (hứa đã báo TA):** sai ở câu chữ và khắc phục được bằng nói đúng giờ TA trả lời, chi phí thấp.
 
 ## §3. Khi AI sai  (chặng 3)
-Với mỗi kịch bản đắt nhất:
-- AI nói gì (nguyên văn) · người dùng thấy gì · làm gì tiếp · ai được báo, sau bao lâu.
-- Quyết định: hỏi lại / trả lời kèm giới hạn / dừng và chuyển người — chọn cách nào, đã loại cách nào, vì sao.
-- Loại lỗi (hệ thống / người dùng / ngữ cảnh) và vì sao cách nói, cách sửa đi theo loại đó.
-- 2–3 nguyên tắc HAX/PAIR, mỗi cái trỏ vào một chỗ cụ thể (câu chữ hoặc chỗ trên màn hình).
-- Lỗi nào sửa câu chữ không cứu được (nếu có), và thiết kế cứu nó thế nào.
+
+### Kịch bản #6 — Học viên xin xác nhận đáp số Bài tập 3 đang mở
+
+**Tin nhắn:** “Em tính được trung bình 15,25 và trung vị 11,5, đúng không ạ?”
+
+#### AI nói gì và người dùng làm gì tiếp
+
+- **AI nói nguyên văn:** “Bài tập 3 vẫn đang mở đến **13/11, 23:59**, nên mình không thể xác nhận hay phủ định đáp số. Mình chỉ chắc về **cách làm**: (1) cộng đủ 8 giá trị rồi chia cho 8 theo **§3.1**; (2) sắp xếp dãy số và xác định hai giá trị ở giữa theo **§3.2**. Bạn muốn mình nhắc lại cách xác định trung vị khi số lượng giá trị là số chẵn không?”
+- **Học viên thấy:** nhãn “Chắc về cách làm (§3.1, §3.2) · không xác nhận đáp số”, trạng thái “Bài tập đang mở”, hạn nộp lấy từ trang khóa học, trích đoạn nguồn và hai nút “Gợi ý bước tiếp” và “Hỏi TA”. Không có nút “Kiểm tra đáp án”; nút “Xin đáp số bài 3” bị khoá và giải thích lý do.
+- **Bước tiếp theo:** học viên chọn xem lại khái niệm/trợ giúp một bước, hoặc quay về bài tập để tự tính. Nếu học viên vẫn chỉ gửi kết quả số, AI lặp lại giới hạn và chuyển sang câu hỏi về phương pháp, không so sánh kết quả.
+- **Ai được báo, sau bao lâu:** không tự báo TA vì đây là yêu cầu hỗ trợ bình thường và không phải lỗi hệ thống. Khi học viên chủ động bấm “Hỏi TA”, hệ thống hiển thị nội dung sẽ chuyển và giờ phản hồi dự kiến để học viên xác nhận gửi; TA nhận trong hàng chờ và phản hồi theo giờ trực 08:00–22:00.
+
+#### Quyết định và loại lỗi
+
+- **Chọn: trả lời kèm giới hạn + gợi ý bước đầu.** Đây vẫn giúp học viên đang kẹt lúc muộn học tiếp được, nhưng chặn con đường suy ra đáp số.
+- **Loại “xác nhận/trả lời trực tiếp”:** dù chỉ nói “đúng” hay “sai” đều tiết lộ đáp số theo đường vòng. Hậu quả không đảo lại được vì học viên đã nhìn thấy kết quả.
+- **Loại “dừng hoàn toàn và chuyển TA”:** TA không trực sau 22:00; bắt học viên chờ làm mất cơ hội học trước hạn dù AI vẫn có thể giải thích kiến thức an toàn.
+- **Loại lỗi: lỗi ngữ cảnh.** Cùng phép tính này có thể được giải thích đầy đủ nếu bài đã đóng; nhưng trong ngữ cảnh Bài tập 3 đang mở, xác nhận kết quả trở thành không phù hợp. Vì vậy phải sửa bằng luật dựa trên trạng thái bài tập, không chỉ đổi lời từ chối.
+
+### Kịch bản #7 — Tài liệu có câu sai về độ lệch chuẩn và phương sai
+
+**Tin nhắn:** “Độ lệch chuẩn luôn nhỏ hơn phương sai đúng không ạ? Em thấy tài liệu ghi vậy.”
+
+#### AI nói gì và người dùng làm gì tiếp
+
+- **AI nói nguyên văn:** “Mình thấy tài liệu ở **§3.3** có câu ‘độ lệch chuẩn luôn nhỏ hơn phương sai’. Câu này cần được giảng viên kiểm tra lại: ví dụ nếu phương sai là **0,25** thì độ lệch chuẩn là **0,5**, nên độ lệch chuẩn lớn hơn phương sai. Mình chưa thể khẳng định câu trong tài liệu là đúng. Bạn có muốn gửi ghi chú này cho TA không?”
+- **Học viên thấy:** thẻ “Chắc về phép tính căn · chưa kiểm được ý của giảng viên”, trích dẫn `§3.3`, ví dụ số minh họa và nút “Báo giảng viên chỗ này”. Nút “Đăng lên FAQ” bị khoá, kèm lý do phải có người duyệt.
+- **Bước tiếp theo:** học viên có thể xem lại đoạn nguồn, gửi ghi chú cho TA, hoặc tiếp tục hỏi về định nghĩa phương sai/độ lệch chuẩn. Khi bấm gửi, màn hình xác nhận hiển thị nguyên văn câu hỏi, trích đoạn `§3.3`, ví dụ 0,25/0,5 và thời gian TA phản hồi dự kiến; học viên phải bấm “Xác nhận gửi”.
+- **Ai được báo, sau bao lâu:** sau khi học viên xác nhận, `chuyen_TA` tạo hàng chờ cho TA ngay; vì ví dụ ở §2 xảy ra lúc tối, giao diện nói rõ TA phản hồi sớm nhất từ 08:00 sáng hôm sau. TA thấy câu gốc, đoạn nguồn, lý do AI gắn cờ và ví dụ phản chứng; AI không hứa TA sẽ trả lời ngay.
+
+#### Quyết định và loại lỗi
+
+- **Chọn: trả lời kèm giới hạn + chuyển người sau khi người học duyệt.** Ví dụ phản chứng giúp học viên nhận ra rủi ro ngay, nhưng chỉ giảng viên/TA có thẩm quyền xác nhận và sửa tài liệu chính thức.
+- **Loại “khẳng định tài liệu đúng”:** `tra_cuu_tai_lieu` chỉ chứng minh tài liệu có viết câu đó, không chứng minh mệnh đề đúng; khẳng định sai làm người học tin nhầm và có thể lan ra FAQ.
+- **Loại “AI tự sửa tài liệu hoặc tự đăng FAQ”:** thay đổi thông tin chung cho cả lớp vượt thẩm quyền; nếu ví dụ/diễn giải của AI sai, hậu quả nhân rộng và khó thu hồi.
+- **Loại “không trả lời gì, chỉ chuyển TA”:** học viên không hiểu vì sao cần chờ và không có thông tin để tự cảnh giác; một lời giải thích có giới hạn an toàn hơn chờ im lặng.
+- **Loại lỗi: lỗi hệ thống/nguồn sự thật.** Công cụ truy xuất chạy đúng nhưng nguồn học liệu chứa mệnh đề đáng ngờ. Cách sửa là gắn cờ, lưu bằng chứng và để người có thẩm quyền rà soát nguồn; thay câu chữ xin lỗi không làm tài liệu trở nên đúng.
+
+### Nguyên tắc HAX/PAIR được thể hiện trên prototype
+
+- **G2 — Làm rõ AI làm tốt tới đâu:** nhãn “Chắc về cách làm (§3.1, §3.2) · không xác nhận đáp số” ở ca #6, và “Chắc về phép tính căn · chưa kiểm được ý của giảng viên” ở ca #7, tách điều AI có căn cứ khỏi điều AI không có quyền hoặc chưa kiểm được.
+- **G10 — Thu hẹp phạm vi khi nghi ngờ:** trạng thái “Bài tập đang mở” cùng nút “Xin đáp số bài 3” bị khoá ở ca #6 chặn AI trả lời kết quả, nhưng vẫn mở “Gợi ý bước tiếp”.
+- **G11 — Giải thích vì sao:** khung “Dựa vào” hiển thị đúng mã mục và trích đoạn `§3.1`, `§3.2`, `§3.3`; riêng ca #7 có phản chứng 0,25/0,5 nên học viên biết vì sao AI yêu cầu giảng viên kiểm tra lại.
+- **PAIR — Explainability + Trust; Errors + Graceful Failure:** liên kết nguồn, nhãn trạng thái, nút chuyển TA kèm giờ phản hồi thật và FAQ bị khoá tạo đường lui an toàn. AI không nói “đã báo” khi học viên chưa xác nhận gửi, và không biến một điều chưa được giảng viên xác minh thành thông tin chung của lớp.
+
+### Lỗi không thể cứu chỉ bằng câu chữ
+
+- Với **#6**, một câu từ chối lịch sự không đủ: nếu luồng vẫn có nút “kiểm tra đáp án” hoặc AI còn so sánh kết quả số, thiết kế vẫn làm lộ đáp số. Vì vậy hệ thống phải kiểm tra trạng thái bài tập trước khi tạo phản hồi, vô hiệu hoá mọi hành động xác nhận và chỉ mở các gợi ý theo phương pháp.
+- Với **#7**, thêm lời cảnh báo cũng không sửa được nguồn học liệu sai. Thiết kế phải gắn cờ đoạn nguồn, lưu ngữ cảnh cho TA, chặn `dang_FAQ` với câu chưa được duyệt và chờ TA/giảng viên xác minh trước khi cập nhật thông tin chung.
 
 ## §4. Mức tự chủ  (chặng 4)
 Với mỗi tool:
