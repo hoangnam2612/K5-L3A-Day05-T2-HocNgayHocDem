@@ -3,7 +3,7 @@
 |---|---|---|
 |  |  |  |
 | Lê Hữu Toàn  | 2A202603660 |  |
-|  |  |  |
+| Lê Hoàng Sơn | 2A202603662 |  |
 
 ## §1. Lát cắt & phạm vi
 - Lát cắt (chép từ track):Trong trợ lý học bài của trang khoá học (kiểu ChatGPT Study mode), khi học viên
