@@ -3,7 +3,7 @@
 |---|---|---|
 | Hoàng Hải Nam | 2A202603694 | Từ chặng 1, cùng thảo luận với team, nghiên cứu và đưa ra những kịch bản ở chặng 2 |
 | Lê Hữu Toàn  | 2A202603660 |  |
-| Lê Hoàng Sơn | 2A202603662 |  |
+| Lê Hoàng Sơn | 2A202603662 | Cùng thảo luận với nhóm chốt chặng 3 và chặng 4, hoàn thiện chặng 5|
 | Phạm Thanh Tùng| 2A202603695 | Phụ trách phân tích hai kịch bản rủi ro #6, #7 ở chặng 3 và viết mục 4.3 về thử mức tự chủ, luật chặn. |
 
 
