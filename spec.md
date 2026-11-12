@@ -112,8 +112,8 @@ Thêm:
 - Thử mức đã đặt trên 2 kịch bản đắt nhất + 1 kịch bản bình thường: cái sai có bị chặn không? còn việc nào làm khi lẽ ra phải hỏi? người dùng bình thường có phải chờ vô ích không?
 - Luật thêm hoặc tool tách bước (nếu có), và vì sao.
 - Một mức tự chủ đã đổi lời hứa nào với người dùng.
-===========================TRẢ LỜI=============
-===4.1====
+# ===========================TRẢ LỜI=============
+# ===4.1====
 
 - tra_cuu_tai_lieu (tự làm)
 Nếu ai sai thì: Học viên có thể học sai mà không biết, nhất là khi tài liệu khóa học chứa lỗi như kịch bản #7. Người viết hoặc duyệt tài liệu chịu trách nhiệm sửa nguồn; đội sản phẩm chịu trách nhiệm gắn cờ và chuyển thông tin đáng ngờ đến người có thẩm quyền.
