@@ -2,8 +2,8 @@
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
 | Hoàng Hải Nam | 2A202603694 | Từ chặng 1, cùng thảo luận với team, nghiên cứu và đưa ra những kịch bản ở chặng 2, làm phần 4.2: lý do chọn mức của từng tool, làm phần 6: các tiêu chí pass/fail|
-| Lê Hữu Toàn  | 2A202603660 |  |
-| Lê Hoàng Sơn | 2A202603662 |  |
+| Lê Hữu Toàn  | 2A202603660 | làm chặng 1 và 4.1 và cùng thảo luận với team |
+| Lê Hoàng Sơn | 2A202603662 | Cùng thảo luận với nhóm chốt chặng 3 và chặng 4, hoàn thiện chặng 5|
 | Phạm Thanh Tùng| 2A202603695 |  |
 
 
