@@ -105,17 +105,6 @@ Trong **trợ lý học bài của trang khóa học** (kiểu ChatGPT Study mod
 ## §4. Mức tự chủ  (chặng 4)
 Với mỗi tool:
 - Mức của nhóm (tự làm / cần người duyệt / cấm). Nếu cần người duyệt: ai duyệt · người duyệt thấy gì · quá hạn thì sao.
-
-tra_cuu_tai_lieu (tự làm) 
-
-goi_y_bai_tap  (tự làm)
-
-chuyen_TA (cần người duyệt): Trước khi xác nhận, học viên thấy nguyên văn câu hỏi, đoạn tài liệu liên quan, lý do chuyển và thời gian TA dự kiến phản hồi. Nếu học viên chưa xác nhận thì yêu cầu không được gửi. Nếu TA chưa phản hồi đúng giờ dự kiến, hệ thống cập nhật trạng thái và không nói rằng vấn đề đã được giải quyết.
-
-dang_FAQ (cấm)
-
-
-
 - Lý do theo cost-of-error: sai thì ai chịu gì · đảo lại được không · chờ người thì mất gì.
 - Phương án đã cân nhắc và vì sao loại.
 Thêm:
@@ -123,7 +112,25 @@ Thêm:
 - Thử mức đã đặt trên 2 kịch bản đắt nhất + 1 kịch bản bình thường: cái sai có bị chặn không? còn việc nào làm khi lẽ ra phải hỏi? người dùng bình thường có phải chờ vô ích không?
 - Luật thêm hoặc tool tách bước (nếu có), và vì sao.
 - Một mức tự chủ đã đổi lời hứa nào với người dùng.
+===========================TRẢ LỜI=============
+===4.1====
 
+- tra_cuu_tai_lieu (tự làm)
+Nếu ai sai thì: Học viên có thể học sai mà không biết, nhất là khi tài liệu khóa học chứa lỗi như kịch bản #7. Người viết hoặc duyệt tài liệu chịu trách nhiệm sửa nguồn; đội sản phẩm chịu trách nhiệm gắn cờ và chuyển thông tin đáng ngờ đến người có thẩm quyền.
+	Đảo lại được không?:Có thể sửa nguồn và thông báo đính chính, nhưng không thể thu hồi việc học viên đã đọc hoặc ghi nhớ thông tin sai.
+- goi_y_bai_tap  (tự làm)
+Nếu ai sai thì:Học viên chịu hậu quả học tập nếu chép đáp số hoặc không tự học được. Kịch bản #6 cho thấy ngay cả xác nhận “đúng” hay “sai” cũng có thể tiết lộ đáp án
+Đảo lại được không?:Gợi ý có thể sửa, nhưng đáp số đã nhìn thấy thì không thể làm cho người học “chưa biết” lại; hậu quả với mục đích học tập không đảo ngược được
+- chuyen_TA (cần người duyệt): 
+Nếu ai sai thì:Nếu chuyển nhầm hoặc gửi sai nội dung, học viên và TA mất thời gian; nội dung riêng của câu hỏi có thể đến người nhận không cần thiết
+	Đảo lại được không?:Có thể hủy hoặc sửa yêu cầu trước khi TA xử lý; sau khi TA đã đọc, không thể thu hồi thông tin họ đã thấy
+	Nếu phải chờ duyệt: Chờ TA làm chậm việc xác minh. Trong ví dụ xảy ra buổi tối, TA sớm nhất phản hồi từ 08:00 sáng hôm sau. Với câu đáng ngờ trong tài liệu (#7), chờ là cần thiết để có xác nhận có thẩm quyền; AI vẫn nên nêu rõ điều gì đáng ngờ để học viên không phải chờ trong im lặng
+- dang_FAQ (cấm)
+ Nếu ai sai thì:Một câu sai có thể khiến cả lớp học sai trước khi bị phát hiện; người đọc và người chịu trách nhiệm cho nội dung FAQ đều bị ảnh hưởng. Đây là phạm vi rộng hơn một câu trả lời riêng
+	Đảo lại được không?:Bài đăng có thể gỡ hoặc sửa, nhưng không thể biết ai đã đọc, ghi nhớ hay chia sẻ bản cũ
+
+- Tool khó xếp nhất là goi_y_bai_tap:vì mức hỗ trợ nào cũng có cái giá. Nếu AI chỉ từ chối, học viên đang học muộn vẫn mắc kẹt; nếu AI đưa quá nhiều gợi ý hoặc xác nhận đáp số, học viên có thể chép bài và mất cơ hội tự làm, như kịch bản #6. Nhóm chọn để AI tự gợi ý phương pháp và từng bước, nhưng cấm đưa hoặc xác nhận đáp số khi bài tập đang mở. Cách này giúp học viên tiếp tục học mà không biến trợ lý thành công cụ làm bài thay
+- Đổi mức tự chủ thì lời hứa với người dùng đổi thế nào? :Khi đổi mức tự chủ, lời hứa với học viên cũng đổi. Với goi_y_bai_tap, nhóm chọn để AI tự gợi ý phương pháp, nên lời hứa là “AI giúp bạn biết bước tiếp theo để tự làm”, không phải “AI giải bài thay bạn”. Khi bài tập đang mở, AI không đưa hay xác nhận đáp số. Còn với chuyen_TA, AI soạn sẵn yêu cầu để học viên xem và xác nhận gửi; lời hứa không phải “AI đã báo TA”, mà là “AI chuẩn bị giúp bạn, bạn quyết định có gửi hay không”.
 ## §5. Prototype  (chặng 5)
 - Link hoặc file · công cụ · phần nào mock · có lời gọi AI thật không.
 - 1–2 ảnh có đánh số; mỗi số: thể hiện gì · nguyên tắc HAX/PAIR nào · mức tự chủ nào.
