@@ -2,12 +2,24 @@
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
 |  |  |  |
-|  |  |  |
-|  |  |  |
+| Lê Hữu Toàn  | 2A202603660 |  |
+| Lê Hoàng Sơn | 2A202603662 |  |
 
 ## §1. Lát cắt & phạm vi
-- Lát cắt (chép từ track).
+- Lát cắt (chép từ track):Trong trợ lý học bài của trang khoá học (kiểu ChatGPT Study mode), khi học viên
+đang hỏi bài lúc tối muộn, khi không còn ai để hỏi, AI giảng kèm trích tài liệu,
+hỏi lại cho rõ, gợi ý từng bước, hay nói thẳng "tài liệu không có, hỏi giảng
+viên", để học viên hiểu đúng bài mình đang học, không chép đáp án, không học sai
+mà không biết
 - 3 việc tính năng KHÔNG làm, mỗi việc một câu vì sao.
+1. **Không đưa hoặc xác nhận đáp số bài đang mở.**
+   Chỉ gợi ý bước đầu. Đưa đáp số thì học viên chép được và không rút lại được,
+   còn xác nhận "đúng rồi" cũng là đưa đáp án theo đường vòng.
+2. **Không trả lời kiến thức khóa học nếu không tìm được căn cứ trong tài liệu đã mở.**
+   Thay vào đó AI nói "tài liệu không có" và nói buổi đó học gì từ đề cương, vì
+     câu trả lời không nguồn khiến học viên học sai mà không nhận ra
+3. **Không đăng câu hỏi và câu trả lời lên FAQ chung khi chưa có người duyệt.**
+   Câu trả lời sai có thể ảnh hưởng nhiều học viên trước khi được gỡ.
 
 ## §2. Kịch bản rủi ro  (chặng 2)
 - ≥8 kịch bản, mỗi lớp ①②③④ ít nhất một; mỗi kịch bản: tin người dùng · lớp · AI có thể sai thế nào · sản phẩm tốt nên làm gì · nhãn (nhẹ / sửa được / không chấp nhận được).
